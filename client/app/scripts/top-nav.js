@@ -6,8 +6,6 @@
         function ($scope, $location, socket) {
             var vm = this;
             
-            vm.users = 1;
-               
             vm.isActive = function(viewLocation) { 
                 return viewLocation === $location.path();
             };
