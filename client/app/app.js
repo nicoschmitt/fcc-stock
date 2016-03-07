@@ -1,6 +1,13 @@
 /* global angular */
 (function() {
-  var app = angular.module('myApp', [ 'ngRoute', "ngAnimate", "mgcrea.ngStrap" ]);
+  var app = angular.module('myApp', [ 'ngRoute', "ngAnimate", "mgcrea.ngStrap", "btford.socket-io" ]);
+  
+  app.factory("socket", ["socketFactory", function (socketFactory) {
+    console.log("socket factory");
+    var socket = socketFactory();
+    socket.forward('stocks');
+    return socket;
+  }]);
   
   app.config(['$routeProvider', 
     function ($routeProvider) {

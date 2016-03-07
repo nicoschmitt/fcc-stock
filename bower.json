@@ -17,13 +17,14 @@
     "angular-animate": "^1.5.0",
     "angular-route": "^1.5.0",
     "angular-strap": "^2.3.7",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "angular-socket-io": "^0.7.0"
   },
   "overrides": {
-    "bootstrap": {
-      "main": [
-        "dist/js/bootstrap.js"
-      ]
+    "angular-socket-io": {
+        "main": [
+            "socket.min.js"
+        ]
     }
   }
 }

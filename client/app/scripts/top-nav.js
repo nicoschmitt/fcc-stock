@@ -1,26 +1,26 @@
 (function() {
     
-  var app = angular.module('myApp');
+    var app = angular.module('myApp');
   
-  app.directive("topNav", ["$location",
-    function ($location) {
-        
-        var topNavCtrl = function() { 
-          var vm = this;
+    app.controller('topNavCtrl', ["$scope", "$location", 
+        function ($scope, $location, socket) {
+            var vm = this;
+            
+            vm.users = 1;
                
-          vm.isActive = function(viewLocation) { 
-            return viewLocation === $location.path();
-          };
-          
-        };
-        
-        return {
-           restrict: 'E',
-           templateUrl: "/app/views/top-nav.html",
-           controller: topNavCtrl,
-           controllerAs: "nav"
-        };
-  }]);
+            vm.isActive = function(viewLocation) { 
+                return viewLocation === $location.path();
+            };
+        }
+    ]);
   
+    app.directive("topNav", function () {
+        return {
+            restrict: 'E',
+            templateUrl: "/app/views/top-nav.html",
+            controller: "topNavCtrl",
+            controllerAs: "nav"
+        };
+    });
   
 }());

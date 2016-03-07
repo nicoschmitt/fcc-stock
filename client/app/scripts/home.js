@@ -2,8 +2,8 @@
     
     var app = angular.module('myApp');
   
-    app.controller('homeCtrl', ["$scope", '$http', "$location", 
-        function ($scope, $http, $location) {
+    app.controller('homeCtrl', ["$scope", '$http', "$location", "socket",
+        function ($scope, $http, $location, socket) {
             var vm = this;
             
             vm.loading = true;
@@ -26,12 +26,15 @@
                 }, handleError);
             }
             
+            $scope.$on('socket:stocks', function (ev, data) {
+                console.log("Stock update from socket");
+                vm.stocks = data;
+            });
+            
             var handleError = function(resp) {
-                // error
                 vm.loading = false;
                 vm.message = resp.data;
                 console.log(resp.data);
-                
             };
             
             vm.addSymbol = function() {
@@ -43,6 +46,7 @@
                    vm.stocks.push(resp.data);
                    vm.searchStock = "";
                    renderStocks();
+                   socket.emit("stocks", vm.stocks);
                    
                 }, handleError);
             };
@@ -55,6 +59,7 @@
                    // success
                    vm.stocks = vm.stocks.filter(s => s._id != stock._id);
                    renderStocks();
+                   socket.emit("stocks", vm.stocks);
                    
                 }, handleError);
             };

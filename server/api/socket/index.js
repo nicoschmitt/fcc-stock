@@ -1,13 +1,17 @@
 (function(){
     
     var register = function(io) {
-        io.on("connection", () => {
-           console.log("New connection.");
+        
+        io.on("connection", (socket) => {
+
+            socket.on("stocks", (data) => {
+                console.log("Broadcast stock update");
+                console.log(data);
+                socket.broadcast.emit("stocks", data);
+            });
+
         });
- 
-        io.on("disconnect", () => {
-            console.log("End of connection.");
-        });
+        
     };
     
     module.exports.register = register;
