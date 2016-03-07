@@ -11,6 +11,9 @@ Use mongodb to store data.
 
 ##### Install & Run
 
+First install node, bower (global) and gulp-cli (global).  
+Then:  
+
 npm i && bower i && gulp
 
 Demo here : https://nico-stock.herokuapp.com
