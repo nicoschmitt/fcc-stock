@@ -22,6 +22,7 @@
     "bower-main": "^0.2.14",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
+    "gulp-minify": "0.0.5",
     "gulp-util": "^3.0.7"
   },
   "scripts": {

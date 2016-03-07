@@ -14,7 +14,7 @@ var bodyParser = require('body-parser');
 
 var app = express();
 var server = http.createServer(app);
-var io = require('socket.io')(http, { serveClient: true });
+var io = require('socket.io')(server);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
