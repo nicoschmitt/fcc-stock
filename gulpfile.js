@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var bowerMain = require('bower-main');
 var del = require('del');
-var minify = require("gulp-minify");
+var uglify = require("gulp-uglify");
 
 gulp.task("clean", function() {
    del("client/lib/*"); 
@@ -20,7 +20,7 @@ gulp.task('bower-css', function() {
 
 gulp.task("socketio-client", function() {
     gulp.src("node_modules/socket.io-client/socket.io.js") 
-              .pipe(minify())
+              .pipe(uglify())
               .pipe(gulp.dest("./client/lib"));
 });
 
