@@ -29,5 +29,8 @@
         angular.bootstrap(document, ["myApp"]);
     });
   };
+  
+  
+  var socket = io();
 
 }());

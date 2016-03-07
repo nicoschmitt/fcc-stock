@@ -14,6 +14,7 @@ var bodyParser = require('body-parser');
 
 var app = express();
 var server = http.createServer(app);
+var io = require('socket.io')(http, { serveClient: true });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -27,10 +28,11 @@ app.use(sassMiddleware({
 }));
 
 require('./server/routes').register(app);
+require("./server/api/socket").register(io);
 
 app.use(express.static(path.resolve(__dirname, 'client')));
 
-server.listen(process.env.PORT || 8080, process.env.IP || "0.0.0.0", function(){
+server.listen(process.env.PORT || 8080, process.env.IP || "0.0.0.0", function() {
   var addr = server.address();
   console.log("Server listening at", addr.address + ":" + addr.port);
 });
