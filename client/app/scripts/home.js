@@ -46,7 +46,7 @@
                    vm.stocks.push(resp.data);
                    vm.searchStock = "";
                    renderStocks();
-                   socket.emit("stocks", vm.stocks);
+                   socket.emit("stocks");
                    
                 }, handleError);
             };
@@ -59,7 +59,7 @@
                    // success
                    vm.stocks = vm.stocks.filter(s => s._id != stock._id);
                    renderStocks();
-                   socket.emit("stocks", vm.stocks);
+                   socket.emit("stocks");
                    
                 }, handleError);
             };
